@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import messagebox as mb
 import datetime as dt
+from pathlib import Path
 
 import utils.logger as logger
 
@@ -12,10 +13,12 @@ debug_logger = logger.get("debug")
 
 
 class ChronosApp:
-    def __init__(self, root):
+    def __init__(self, root: tk.Tk, icon_path: Path | str):
         self.root = root
         self.root.title("Time Reporting")
         self.root.resizable(False, False)
+        icon = tk.PhotoImage(file=icon_path)
+        self.root.iconphoto(False, icon)
 
         # States
         self.day_started = False

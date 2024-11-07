@@ -5,7 +5,7 @@ from pathlib import Path
 import modules.taskmanager as tm
 
 class CSVEditorWindow:
-    def __init__(self, root, db_file: Path | str):
+    def __init__(self, root: tk.Tk, db_file: Path | str):
         self.window = tk.Toplevel(root)
         self.window.title("Tasks List")
         self.window.resizable(False, False)

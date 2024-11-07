@@ -6,11 +6,12 @@ from __future__ import annotations
 
 import argparse
 from collections.abc import Sequence
+from pathlib import Path
+import tkinter as tk
 
 import utils.config as configmanager
 import utils.logger as logger
 
-import tkinter as tk
 import modules.app as app
 
 __author__ = "Julien Balderiotti"
@@ -22,8 +23,7 @@ __maintainer__ = "Julien Balderiotti"
 __email__ = "julien.balderiotti@ik.me"
 __status__ = "development" # or production
 
-# Load the environment variables from .env file
-#dotenv.load()
+ROOT_PATH = Path(__file__).parent.resolve()
 
 
 def main(argv: Sequence[str] | None = None) -> int:
@@ -44,7 +44,7 @@ def main(argv: Sequence[str] | None = None) -> int:
 
     # Implement behaviour here
     root_app = tk.Tk()
-    app.ChronosApp(root_app)
+    app.ChronosApp(root_app, ROOT_PATH / "assets" / "chronos_icon.png")
     root_app.mainloop()
 
     return 0
