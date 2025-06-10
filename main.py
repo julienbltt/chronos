@@ -36,7 +36,7 @@ def main(argv: Sequence[str] | None = None) -> int:
 
     # Configure the logging
     app_logger = logger.setup(alias="app", level="INFO")
-    if config["DEFAULT"]["Debug"] == "true":
+    if config["DEFAULT"]["debug"] == "true":
         debug_logger = logger.setup(alias="debug", file_path="logs/debug.log", level="DEBUG")
 
     # Display configuration loaded
