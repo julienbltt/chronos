@@ -21,8 +21,8 @@ def load_data(db_path: Path | str) -> tuple:
 
     if db_path.exists():
         try:
-            with open(db_path, mode='r', newline='', encoding='utf-8') as db_file:
-                dict_reader = csv.DictReader(db_file)
+            with open(db_path, mode='r', newline='', encoding='utf-8') as file:
+                dict_reader = csv.DictReader(file)
                 columns = dict_reader.fieldnames
                 for row in dict_reader:
                     data.append(row)
@@ -37,8 +37,8 @@ def write_data(data: dict, db_file: Path | str) -> None:
     if not db_file.parent.exists():
         db_file.parent.mkdir(parents=True, exist_ok=True)
 
-    with open(db_file, mode='w', newline='', encoding='utf-8') as db_file:
-        spam_writer = csv.writer(db_file, delimiter=',', quotechar='"')
+    with open(db_file, mode='w', newline='', encoding='utf-8') as file:
+        spam_writer = csv.writer(file, delimiter=',', quotechar='"')
         spam_writer.writerow(["Name", "Date", "Begin", "End", "Delay"])
         spam_writer.writerow(data.values())
 
@@ -47,8 +47,8 @@ def add_data(data: dict, db_file: Path | str) -> None:
         db_file.parent.mkdir(parents=True, exist_ok=True)
 
     if not db_file.exists():
-        with open(db_file, mode='w', newline='', encoding='utf-8') as db_file:
-            spam_writer = csv.writer(db_file, delimiter=',', quotechar='"')
+        with open(db_file, mode='w', newline='', encoding='utf-8') as file:
+            spam_writer = csv.writer(file, delimiter=',', quotechar='"')
             spam_writer.writerow(["Name", "Date", "Begin", "End", "Delay"])
 
     with open(db_file, "a+", encoding="utf-8", newline='') as file:
