@@ -23,5 +23,5 @@ def load() -> configparser.ConfigParser:
         config.read_string(SPECIFICATION_STR)
         with open(CONFIGURATION_FILE_PATH, "w", encoding="ascii") as config_file:
             config.write(config_file)
-    else:
-        return config
+        config.read(CONFIGURATION_FILE_PATH)
+    return config

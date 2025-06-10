@@ -35,9 +35,9 @@ def main(argv: Sequence[str] | None = None) -> int:
     config = configmanager.load()
 
     # Configure the logging
-    app_logger = logger.setup(alias="app", level="INFO")
+    app_logger = logger.setup(alias="app", file_path=ROOT_PATH.joinpath("logs/app.log"), level="INFO")
     if config["DEFAULT"]["debug"] == "true":
-        debug_logger = logger.setup(alias="debug", file_path="logs/debug.log", level="DEBUG")
+        debug_logger = logger.setup(alias="debug", file_path=ROOT_PATH.joinpath("logs/debug.log"), level="DEBUG")
 
     # Display configuration loaded
     app_logger.info(f"Configuration loaded: {dict(config.items('DEFAULT'))}")

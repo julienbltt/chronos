@@ -7,11 +7,7 @@ import logging
 from logging import handlers
 from pathlib import Path
 
-
-ROOT_PATH = Path(__file__).parent.parent.resolve()
-LOGS_DIRECTORY_PATH = ROOT_PATH / "logs"
-
-def setup(alias: str = __file__, file_path: Path | str = LOGS_DIRECTORY_PATH / "app.log", level: str | int = logging.DEBUG) -> logging.Logger:
+def setup(alias: str = __file__, file_path: Path | str = "app.log", level: str | int = logging.DEBUG) -> logging.Logger:
     """
     Create a new logger with standard configuration for the majority project.
     :param level: the level of log.
@@ -19,8 +15,13 @@ def setup(alias: str = __file__, file_path: Path | str = LOGS_DIRECTORY_PATH / "
     :param file_path: the access path to the recorder work file.
     :return: a manipulable logger object.
     """
-    if not LOGS_DIRECTORY_PATH.exists():
-        LOGS_DIRECTORY_PATH.mkdir(parents=True, exist_ok=True)
+    # Ensure the file_path is a Path object.
+    if isinstance(file_path, str):
+        file_path = Path(file_path)
+         
+    # Ensure the directory exists.
+    if not file_path.parent.exists():
+        file_path.parent.mkdir(parents=True, exist_ok=True)
 
     # Create logger.
     logger = logging.getLogger(alias)
