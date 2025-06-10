@@ -51,6 +51,6 @@ def add_data(data: dict, db_file: Path | str) -> None:
             spam_writer = csv.writer(db_file, delimiter=',', quotechar='"')
             spam_writer.writerow(["Name", "Date", "Begin", "End", "Delay"])
 
-    with open(db_file, "a+", encoding="utf-8", newline='') as db_file:
-        spam_writer = csv.writer(db_file, delimiter=',', quotechar='"')
+    with open(db_file, "a+", encoding="utf-8", newline='') as file:
+        spam_writer = csv.writer(file, delimiter=',', quotechar='"')
         spam_writer.writerow(data.values())
